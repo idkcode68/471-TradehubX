@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <h1 class="animate__animated animate__fadeIn animate__delay-1s">Welcome to TradehubX</h1>
+      <h6 class="animate__animated animate__fadeIn animate__delay-1s">Where Innovation Meets Possibility</h6>
+      <div class="mt-2 flex justify-center animate__animated animate__fadeIn animate__delay-2s">
+        <div class="max-w-lg border border-gray-300 p-8 rounded-lg shadow-lg">
+          <h2 class="text-3xl text-indigo-500 font-bold mb-4 hover:text-indigo-700">Find Your Next Property at Auction</h2>
+          <form action="{% url 'dashboard:advanced_search_properties' %}" method="POST" class="items-center">
+            {% csrf_token %} 
+            <div class="mb-4 text-left">
+              <label for="location" class="block text-[10px] font-medium text-black/80">Location:</label>
+              <input type="text" id="location" name="location" class="form-input mt-1 block w-full rounded-md shadow-sm bg-gray-100 border-2 border-black p-1 " placeholder="Enter location...">
+            </div>
+            <div class="mb-4 text-left">
+              <label for="property_type" class="block text-[10px] font-medium text-black/80">Property Type:</label>
+              <select id="property_type" name="property_type" class="form-select mt-1 block w-full rounded-md shadow-sm bg-gray-100 border-2 border-black p-1">
+                <option value="">Select property type...</option>
+                {% for cat in category%}
+                <option value="{{cat.id}}">{{cat.title}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="mb-4 text-left">
+              <label for="price_range" class="block text-[10px] font-medium text-black/80">Price Range:</label>
+              <select id="price_range" name="price_range" class="form-select mt-1 block w-full rounded-md shadow-sm bg-gray-100 border-2 border-black p-1 shadow-sm">
+                <option value="">Select price range...</option>
+                <option value="10000000">0 - 1,0000,000</option>
+                <option value="30000000">0 - 3,0000,000</option>
+                <option value="50000000">0 - 5,0000,000</option>
+                <option value="70000000">0 - 7,0000,000</option>
+                <option value="200000000">+10,0000,000</option>
+              </select>
+            </div>
+            <div class="mb-4 text-left">
+              <label for="min_size" class="block text-[10px] font-medium text-black/80">Min. Size:</label>
+              <select id="min_size" name="min_size" class="form-select mt-1 block w-full rounded-md shadow-sm bg-gray-100 border-2 border-black p-1 shadow-sm">
+                <option value="">Select minimum size...</option>
+                <option value="1000">1,000 sqft</option>
+                <option value="2000">2,000 sqft</option>
+                <option value="3000">3,000 sqft</option>
+                <option value="5000">+5,000 sqft</option>
+              </select>
+            </div>
+            <div class="text-center">
+              <button type="submit" class=" items-center px-4 py-2 border border-transparent rounded-md font-semibold text-sm text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-0">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+{% endblock %}
+
+
